@@ -1,0 +1,19 @@
+# Data
+data/
+*.csv
+*.xlsx
+
+# Python
+.venv/
+env/
+venv/
+ENV/
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
