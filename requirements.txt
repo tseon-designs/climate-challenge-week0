@@ -12,8 +12,7 @@ scipy>=1.10.0
 scikit-learn>=1.2.0
 statsmodels>=0.14.0
 
-# Jupyter
-jupyter>=1.0.0
+# Jupyter (VS Code Jupyter extension handles notebooks — avoid full jupyterlab on Windows)
 ipykernel>=6.22.0
 nbformat>=5.8.0
 
