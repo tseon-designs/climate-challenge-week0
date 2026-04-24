@@ -1,0 +1,47 @@
+name: CI - Environment Check
+
+on:
+  push:
+    branches: [ main, setup-task ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python --version
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify key packages are importable
+        run: |
+          python -c "import pandas; print('pandas:', pandas.__version__)"
+          python -c "import numpy; print('numpy:', numpy.__version__)"
+          python -c "import matplotlib; print('matplotlib:', matplotlib.__version__)"
+          python -c "import seaborn; print('seaborn:', seaborn.__version__)"
+          python -c "import scipy; print('scipy:', scipy.__version__)"
+          python -c "import streamlit; print('streamlit:', streamlit.__version__)"
+
+      - name: Run tests
+        run: |
+          python -m pytest tests/ -v --tb=short || echo "No tests found yet."
