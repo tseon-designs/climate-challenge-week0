@@ -15,7 +15,7 @@ This project moves beyond academic research to produce **negotiation-grade insig
 ---
 
 ## 🚀 Live Dashboard
-Experience the data interactively: **[View Streamlit Dashboard](https://your-streamlit-app-url.streamlit.app/)** *(Replace with actual URL once deployed)*
+Experience the data interactively: **[View Streamlit Dashboard](https://ethio-climate-cop32.streamlit.app/)**
 
 ---
 
