@@ -1,7 +1,7 @@
-# Data
-data/
-*.csv
-*.xlsx
+# Data (Included for deployment)
+# data/
+# *.csv
+# *.xlsx
 
 # Python
 .venv/
