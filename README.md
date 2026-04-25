@@ -1,24 +1,30 @@
 # 🌍 African Climate Trend Analysis — COP32 Edition
 
-**EthioClimate Analytics** | Exploratory analysis of historical climate data across five African nations to support Ethiopia's data-driven position at COP32 in Addis Ababa, 2027.
+**EthioClimate Analytics** | Exploratory analysis of historical climate data (2015–2026) across five African nations to support Ethiopia's data-driven position at COP32 in Addis Ababa, 2027.
 
-[![CI](https://github.com/YOUR_USERNAME/climate-challenge-week0/actions/workflows/unittests.yml/badge.svg)](https://github.com/YOUR_USERNAME/climate-challenge-week0/actions/workflows/unittests.yml)
+[![CI - Environment Check](https://github.com/tseon-designs/climate-challenge-week0/actions/workflows/ci.yml/badge.svg)](https://github.com/tseon-designs/climate-challenge-week0/actions/workflows/ci.yml)
 
 ---
 
-## 📋 Project Overview
+## 🎯 The "So What?" (Project Impact)
+This project moves beyond academic research to produce **negotiation-grade insights**. By analyzing 11 years of daily NASA POWER satellite data, we demonstrate:
+- **Fastest Warming**: Sudan is warming at a statistically significant rate, demanding urgent adaptation finance.
+- **Extreme Volatility**: Tanzania and Kenya face the most erratic rainfall patterns, justifying early warning system investments.
+- **Policy Support**: We provide a data-backed foundation for Ethiopia's leadership at COP32 via a **Composite Vulnerability Ranking**.
 
-This project analyzes NASA POWER satellite-derived climate data (2015–2026) for:
-- 🇪🇹 Ethiopia
-- 🇰🇪 Kenya
-- 🇸🇩 Sudan
-- 🇹🇿 Tanzania
-- 🇳🇬 Nigeria
+---
 
-The goal is to produce **negotiation-grade insights** — evidence that answers:
-1. **What is changing?** (trend + baseline + uncertainty)
-2. **What did it cause?** (impact stat — yields, displacement, GDP)
-3. **What does it demand?** (the policy/finance ask)
+## 🚀 Live Dashboard
+Experience the data interactively: **[View Streamlit Dashboard](https://your-streamlit-app-url.streamlit.app/)** *(Replace with actual URL once deployed)*
+
+---
+
+## 🛠️ Technical Breadth
+- **Data Engineering**: Modular Python pipeline (`src/clean.py`) with Z-score outlier detection and ffill imputation.
+- **Exploratory Data Analysis**: 5 country-level EDA notebooks + 1 cross-country synthesis.
+- **Statistical Rigor**: Kruskal-Wallis significance testing and linear regression trends.
+- **DevOps**: GitHub Actions CI pipeline for environment verification and automated unit testing.
+- **UI/UX**: Interactive Streamlit dashboard with Plotly integration and professional dark-mode styling.
 
 ---
 
@@ -26,117 +32,49 @@ The goal is to produce **negotiation-grade insights** — evidence that answers:
 
 ```
 climate-challenge-week0/
-├── .github/
-│   └── workflows/
-│       └── unittests.yml       # CI pipeline
-├── .vscode/
-│   └── settings.json
+├── .github/workflows/
+│   └── ci.yml              # CI pipeline (Linting + Testing)
 ├── app/
-│   ├── __init__.py
-│   ├── main.py                 # Streamlit dashboard
-│   └── utils.py                # Utility functions
-├── data/                       # ⚠️ IGNORED — place CSV files here
+│   ├── main.py             # Streamlit dashboard UI
+│   └── utils.py            # Dashboard logic & caching
 ├── notebooks/
-│   ├── __init__.py
-│   ├── eda_ethiopia.ipynb
-│   ├── eda_kenya.ipynb
-│   ├── eda_sudan.ipynb
-│   ├── eda_tanzania.ipynb
-│   ├── eda_nigeria.ipynb
-│   └── compare_countries.ipynb
-├── scripts/
-│   ├── __init__.py
-│   └── README.md
+│   ├── eda_ethiopia.ipynb  # Individual country EDA
+│   └── compare_countries.ipynb # Statistical synthesis & ranking
 ├── src/
-│   ├── __init__.py
-│   ├── clean.py                # Reusable cleaning functions
-│   └── visualize.py            # Reusable plotting functions
+│   ├── clean.py            # Reusable cleaning logic
+│   └── visualize.py        # Professional plotting utilities
 ├── tests/
-│   └── __init__.py
-├── .gitignore
+│   └── test_clean.py       # Automated unit tests
+├── reports/
+│   └── climate_vulnerability_report.md # Medium-style report
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## ⚙️ Environment Setup
+## ⚙️ Quick Start
 
-### Prerequisites
-- Python 3.10+
-- Git
-
-### 1. Clone the Repository
+### 1. Setup Environment
 ```bash
-git clone https://github.com/YOUR_USERNAME/climate-challenge-week0.git
-cd climate-challenge-week0
-```
-
-### 2. Create a Virtual Environment
-```bash
-# Windows
 python -m venv .venv
-.venv\Scripts\activate
-
-# macOS / Linux
-python -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Install Dependencies
-```bash
+.venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Add Data Files
-Place the NASA POWER CSV files in the `data/` directory:
-```
-data/
-├── ethiopia.csv
-├── kenya.csv
-├── sudan.csv
-├── tanzania.csv
-└── nigeria.csv
-```
-> ⚠️ **Never commit data files to GitHub.** The `data/` folder is in `.gitignore`.
-
-### 5. Run Notebooks
-```bash
-jupyter notebook notebooks/
-```
-
-### 6. Run the Streamlit Dashboard
+### 2. Run Dashboard
 ```bash
 streamlit run app/main.py
 ```
 
----
-
-## 📊 Dataset
-
-**Source:** NASA Prediction of Worldwide Energy Resources (NASA POWER)
-**Period:** January 2015 – March 2026
-**Frequency:** Daily
-
-| Column | Unit | Description |
-|--------|------|-------------|
-| YEAR | — | Year of observation |
-| DOY | — | Day of year (1–365/366) |
-| T2M | °C | Mean daily air temperature at 2m |
-| T2M_MAX | °C | Maximum daily temperature at 2m |
-| T2M_MIN | °C | Minimum daily temperature at 2m |
-| T2M_RANGE | °C | Daily temperature range |
-| PRECTOTCORR | mm/day | Bias-corrected total daily precipitation |
-| RH2M | % | Relative humidity at 2m |
-| WS2M | m/s | Mean daily wind speed at 2m |
-| WS2M_MAX | m/s | Maximum daily wind speed at 2m |
-| PS | kPa | Atmospheric surface pressure |
-| QV2M | g/kg | Specific humidity |
+### 3. Run Tests
+```bash
+pytest tests/
+```
 
 ---
 
 ## 🌐 References
-- [NASA POWER Data Access Viewer](https://power.larc.nasa.gov/data-access-viewer/)
-- [WMO State of the Climate in Africa 2024](https://wmo.int/publication-series/state-of-climate-africa-2024)
-- [World Bank Climate Risk Country Profiles](https://climateknowledgeportal.worldbank.org/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
+- NASA POWER Data Access Viewer
+- WMO State of the Climate in Africa 2024
+- World Bank Climate Risk Country Profiles

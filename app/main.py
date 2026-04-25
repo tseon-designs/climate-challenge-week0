@@ -129,6 +129,10 @@ with st.sidebar:
     selected_var = variable_map[selected_var_label]
 
     st.markdown("---")
+    st.markdown("### 📄 Project Documentation")
+    st.markdown("[Read the Detailed Report](https://github.com/tseon-designs/climate-challenge-week0/blob/main/reports/climate_vulnerability_report.md)")
+    
+    st.markdown("---")
     st.markdown("""
     <div style='color:#64748b; font-size:0.78rem; line-height:1.6;'>
     📡 Data: NASA POWER (2015–2026)<br>
